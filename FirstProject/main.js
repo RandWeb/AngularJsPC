@@ -2,9 +2,6 @@ var contacts = angular.module('contacts', []);
 
 contacts.controller('ContactsController', [
     '$scope', '$http', ($scope, $http) => {
-        // $http.get('data.json').success((data) => {
-        //     $scope.artists = data;
-        // });
 
         $http.get('data.json').then(successCallback, errorCallback);
 
@@ -16,6 +13,8 @@ contacts.controller('ContactsController', [
         function errorCallback(error) {
             console.log('error', error)
         }
+
+        $scope.artistOrder = 'name';
     }
 ]);
 

@@ -15,10 +15,9 @@
         <h1>Artist Directory</h1>
         <label for="search">search</label>
         <input ng-model="query" id="search" type="text" placeholder="search for artists" autofocus>
-        <label for="select" class="formgroup">By:</label>
-        <select ng-model="artistOrder">
-			<option value="" selected>default</option>
-            <option value="name" selected>name</option>
+        <label for="artist-order" class="formgroup">By:</label>
+        <select id="artist-order" ng-model="artistOrder">
+            <option value="name">name</option>
             <option value="reknown">reknown</option>
         </select>
 		<label class="formgroup">
