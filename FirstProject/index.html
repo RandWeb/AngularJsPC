@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html ng-app="contacts">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Angular jS</title>
+	<link href="main.css" rel="stylesheet">
+	<script src="../node_modules/angular/angular.js"></script>
+	<script src="main.js"></script>
+</head>
+<body>
+
+		<div class="main" ng-controller="ContactsController">
+			<ul class="artistlist">
+				<li class="artist cf" data-ng-repeat="item in artists">
+					<img data-ng-src="{{'img'}}.jpg" alt="Photo of Artist">
+					<div class="info">
+						<h1>{{ item.name }}</h1>
+						<h2>{{ item.reknown }}</h2>
+					</div>
+				</li>
+			</ul>
+		</div>
+
+</body>
+</html>
