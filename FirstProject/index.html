@@ -11,8 +11,13 @@
 <body>
 
 		<div class="main" ng-controller="ContactsController">
+			<div class="search">
+				<h1>Artist Directory</h1>
+				<label for="search">search</label>
+				<input ng-model="query" id="search" type="text" placeholder="search for artists" autofocus>
+			</div>
 			<ul class="artistlist">
-				<li class="artist cf" data-ng-repeat="item in artists">
+				<li class="artist cf" data-ng-repeat="item in artists | filter:query ">
 					<img data-ng-src="{{'img'}}.jpg" alt="Photo of Artist">
 					<div class="info">
 						<h1>{{ item.name }}</h1>
