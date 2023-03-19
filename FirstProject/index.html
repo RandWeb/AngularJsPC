@@ -6,35 +6,12 @@
     <title>Angular jS</title>
     <link href="main.css" rel="stylesheet">
     <script src="../node_modules/angular/angular.js"></script>
+    <script src="../node_modules/angular-route/angular-route.js"></script>
     <script src="main.js"></script>
 </head>
 <body>
 
-<div class="main" ng-controller="ContactsController">
-    <div class="search">
-        <h1>Artist Directory</h1>
-        <label for="search">search</label>
-        <input ng-model="query" id="search" type="text" placeholder="search for artists" autofocus>
-        <label for="artist-order" class="formgroup">By:</label>
-        <select id="artist-order" ng-model="artistOrder">
-            <option value="name">name</option>
-            <option value="reknown">reknown</option>
-        </select>
-		<label class="formgroup">
-			<input type="radio" ng-model="direction" name="direction" checked> Ascending
-			<input type="radio" ng-model="direction" name="direction" value="reverse"> Descending
-		</label>
-    </div>
-    <ul class="artistlist">
-        <li class="artist cf" data-ng-repeat="item in artists | filter:query | orderBy: artistOrder:direction">
-            <img data-ng-src="{{'img'}}.jpg" alt="Photo of Artist">
-            <div class="info">
-                <h1>{{ item.name }}</h1>
-                <h2>{{ item.reknown }}</h2>
-            </div>
-        </li>
-    </ul>
-</div>
+<div class="main" ng-view></div>
 
 </body>
 </html>
