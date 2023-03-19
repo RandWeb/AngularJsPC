@@ -20,11 +20,13 @@
 
   <ul class="artistlist">
     <li class="artist cf" data-ng-repeat="item in artists | filter:query | orderBy: artistOrder:direction">
-      <img data-ng-src="{{'img'}}.jpg" alt="Photo of Artist">
-      <div class="info">
-        <h1>{{ item.name }}</h1>
-        <h2>{{ item.reknown }}</h2>
-      </div>
+      <a href="#details/{{ artists.indexOf(item) }}">
+        <img data-ng-src="{{'img'}}.jpg" alt="Photo of Artist">
+        <div class="info">
+          <h1>{{ item.name }}</h1>
+          <h2>{{ item.reknown }}</h2>
+        </div>
+      </a>
     </li>
   </ul>
 </section>
