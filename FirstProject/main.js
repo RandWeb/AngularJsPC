@@ -20,7 +20,7 @@ contacts.config([
     }
 ]);
 
-var contactController = angular.module('ContactController', []);
+var contactController = angular.module('ContactController', ['ngAnimate']);
 
 contactController.controller('ListController', [
     '$scope', '$http', function ($scope, $http) {

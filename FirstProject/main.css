@@ -138,7 +138,7 @@ a.small {
 	max-width     : 500px;
 	margin        : 0 auto;
 	margin-top    : 30px;
-	border-radius : 20px 20px 0 0 ;
+	border-radius : 20px;
 	padding       : 20px 30px;
 	z-index       : 20;
 }
@@ -190,7 +190,7 @@ a.small {
 	width         : 100%;
 	padding       : 10px 0 10px 15px;
 	font-size     : 1rem;
-	color         : #475B62;
+	color         : #BBF3FF;
 	background    : rgba(255, 255, 255, 0.4);
 	border        : 1px solid rgba(255, 255, 255, 0.2);
 	border-radius : 10px;
@@ -212,7 +212,7 @@ a.small {
 	display       : inline;
 	padding       : 10px 0 10px 15px;
 	font-size     : 1rem;
-	color         : #475B62;
+	color         : #B8EDFF;
 	background    : rgba(255, 255, 255, 0.4);
 	border        : 1px solid rgba(0, 0, 0, 0.3);
 	border-radius : 10px;
@@ -240,9 +240,14 @@ a.small {
 }
 
 .artistlist li {
-	margin        : 0;
-	padding       : 10px 10px 0 10px;
-	border-bottom : 1px dotted black;
+	margin             : 0;
+	padding            : 10px 10px 0 10px;
+	border-bottom      : 1px dotted black;
+	opacity            : .9;
+	-webkit-transition : all 0.3s ease-out;
+	-moz-transition    : all 0.3s ease-out;
+	-o-transition      : all 0.3s ease-out;
+	transition         : all 0.3s ease-out;
 }
 
 .artistlist a {
@@ -251,7 +256,12 @@ a.small {
 }
 
 .artistlist li:hover {
-	background : #FDF6E3;
+	background        : #FDF6E3;
+	opacity           : 1;
+	-webkit-transform : scale(1.2);
+	-moz-transform    : scale(1.2);
+	-o-transform      : scale(1.2);
+	transform         : scale(1.2);
 }
 
 .artist img {
@@ -301,5 +311,16 @@ a.small {
 	border-radius : 20px;
 }
 
-.artistinfo .btn {
+.artist.ng-enter.ng-enter-active,
+.artist.ng-leave {
+	opacity  : 1;
+	height   : 80px;
+	overflow : hidden;
+}
+
+.artist.ng-leave.ng-enter-active,
+.artist.ng-enter {
+	opacity  : 0;
+	height   : 0;
+	overflow : hidden;
 }
