@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>scope</title>
+</head>
+<script src="../../../node_modules/angular/angular.min.js"></script>
+<script src="../../../node_modules/jasmine/bin/jasmine.js"></script>
+<body>
+
+<script>
+  angular.module('myApp', []);
+
+  // -- tests
+  describe("$scope", function () {
+
+    beforeEach(module('myApp'));
+
+    it("evaluates expressions", inject(function ($rootScope) {
+      var scope = $rootScope.$new();
+      scope.a = 1;
+      scope.b = 2;
+      expect(scope.$eval('a+b')).toBe(3);
+    }));
+
+    it("inherits from the parent", inject(function ($rootScope) {
+      var scope = $rootScope.$new();
+      var childScope = scope.$new();
+      scope.a = 1;
+      scope.b = 2;
+      expect(childScope.$eval('a+b')).toBe(3);
+    }));
+
+    it("overrides from the parent", inject(function ($rootScope) {
+      var scope = $rootScope.$new();
+      var childScope = scope.$new();
+      scope.a = 1;
+      scope.b = 2;
+      childScope.b = 3;
+      expect(scope.$eval('a+b')).toBe(3);
+      expect(childScope.$eval('a+b')).toBe(4);
+    }));
+
+  });
+
+  // -- Jasmine Runner
+  (function () {
+    var jasmineEnv = jasmine.getEnv();
+    jasmineEnv.updateInterval = 1000;
+
+    var htmlReporter = new jasmine.HtmlReporter();
+
+    jasmineEnv.addReporter(htmlReporter);
+
+    jasmineEnv.specFilter = function (spec) {
+      return htmlReporter.specFilter(spec);
+    };
+
+    var currentWindowOnload = window.onload;
+
+    window.onload = function () {
+      if (currentWindowOnload) {
+        currentWindowOnload();
+      }
+      execJasmine();
+    };
+
+    function execJasmine() {
+      jasmineEnv.execute();
+    }
+
+  })();
+</script>
+</body>
+</html>
