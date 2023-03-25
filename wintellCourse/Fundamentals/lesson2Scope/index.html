@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="app">
+<head>
+    <meta charset="UTF-8">
+    <title>nested scopes</title>
+    <script src="../scripts/jquery-2.0.2.min.js"></script>
+    <script src="../../../node_modules/angular/angular.min.js"></script>
+
+</head>
+<body>
+<h1>Fundamentals of Angular JS</h1>
+<h2>Learn About Scope</h2>
+<label for="name">Enter your name:</label>
+<input type="text" id="name" name="name" data-ng-model="personName"
+       placeholder="Your name..."/>
+<div>Welcome, {{personName}}!</div>
+
+
+<div data-ng-controller="SubController">
+    <label for="otherName">Enter your name again:</label>
+    <input type="text" id="otherName" name="otherName" data-ng-model="personName" placeholder="Your name..."/>
+    <div>Welcome, {{personName}}!</div>
+    <div id="parentDiv">Your parent is {{$parent.personName}}</div>
+</div>
+
+<script type="text/javascript">
+
+    // function SubController($scope) {
+    //     $scope.personName = "Controller";
+    // }
+
+    angular.module("app",[]).controller("SubController",['$scope',function ($scope){
+        $scope.personName = "Controller";
+    }])
+</script>
+</body>
+</html>

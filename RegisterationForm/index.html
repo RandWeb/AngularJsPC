@@ -1,10 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" ng-app="RegistrationApp">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+
+    <script src="../node_modules/angular/angular.min.js"></script>
+    <script src="../node_modules/angular-animate/angular-animate.min.js"></script>
+    <script src="../node_modules/angular-route/angular-route.min.js"></script>
+
+    <script src="js/script.js"></script>
+    <script src="js/controllers/register.js"></script>
+    <script src="js/controllers/success.js"></script>
 </head>
 <body>
-$END$
+<header ng-include="'views/nav.html'">
+
+</header>
+<div class="page">
+    <main class="cf" ng-view></main>
+</div>
 </body>
 </html>

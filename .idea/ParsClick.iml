@@ -8,5 +8,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="angular-route" level="project" />
+    <orderEntry type="library" name="parse" level="application" />
   </component>
 </module>

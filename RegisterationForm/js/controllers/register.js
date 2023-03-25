@@ -1,5 +1,10 @@
+app.controller('RegisterController', ['$scope', function ($scope) {
+    $scope.login = () => {
+        $scope.message = "welcome "+ $scope.user.email;
 
-app.controller('RegisterController', ['$scope', ($scope) => {
-    $scope.message = "welcome to my app";
+    }
+    $scope.register=()=>{
+        $scope.message = "welcome "+ $scope.user.firstname + " "+$scope.user.lastname;
+    }
 }]);
 
