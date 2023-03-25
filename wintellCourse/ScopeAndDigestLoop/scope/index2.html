@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>scopes</title>
+  <script src="../../../node_modules/angular/angular.min.js"></script>
+</head>
+<body>
+<div data-ng-app="myApp">
+  a = 1; b= 2
+  <div data-ng-controller="OuterController">
+    <span> Outer : a + b = {{a+b}}</span>
+    <div data-ng-controller="InnerController">
+      <span>inner : a + b = {{a+b}}</span>
+      <div data-ng-controller="InnerMostController">
+        b= 3;
+        <span>inner most : a + b = {{a+b}}</span>
+      </div>
+    </div>
+  </div>
+</div>
+<script >
+  const app = angular.module("myApp", []);
+
+  app.controller("OuterController", function($scope) {
+    $scope.a = 1;
+    $scope.b = 2;
+  });
+
+  app.controller("InnerController", function($scope) {
+  });
+
+  app.controller("InnerMostController", function($scope) {
+    $scope.b = 3;
+  });
+</script>
+</body>
+</html>
