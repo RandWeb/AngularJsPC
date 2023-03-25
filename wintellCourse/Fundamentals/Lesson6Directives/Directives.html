@@ -1,0 +1,40 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
+<head>
+    <title>Directives - Fundamentals of AngularJS</title>
+    <link type="text/css" rel="stylesheet" href="Style.css"/>
+    <script src="../../../node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="Directives.js"></script>
+    <script type="text/javascript" src="Controllers.js"></script>
+    <script type="text/javascript" src="Modules.js"></script>
+</head>
+<body data-ng-controller="DirectiveController">
+<h1>Fundamentals of AngularJS</h1>
+<h2>Learn About Directives</h2>
+
+<div>No directive:
+    <span>Secured content</span>
+    /
+    <span>Not allowed content</span>
+</div>
+<div>Directive:
+    <span data-ng-secured="secured">Secured content</span>
+    /
+    <span data-ng-secured="notSecured">Not allowed content</span>
+</div>
+<div>
+    <button data-ng-click="disallow()" data-ng-disabled="!notSecured">
+        Disallow
+    </button>
+</div>
+
+
+<div>Element Directive:</div>
+<ng-grid-list></ng-grid-list>
+<div>
+    <div>&nbsp;</div>
+    <div><a href="../Index.html">Home</a></div>
+</div>
+
+</body>
+</html>

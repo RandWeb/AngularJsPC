@@ -19,21 +19,25 @@
     <div>Welcome, {{person.name}}! Your parent is {{person.outerName}}</div>
 </div>
 <script type="text/javascript">
-    var myApp = angular.module('myApp', []);
+    const myApp = angular.module('myApp', []);
+
     myApp.controller('OuterController', function ($scope) {
         $scope.$watch('person.name', function(newName) {
             $scope.$broadcast('onOuterNameChanged', newName);
         });
+
         $scope.person = { name: 'Outer', innerName: '' };
         $scope.$on('onInnerNameChanged', function(e, value) {
             $scope.person.innerName = value;
         });
     });
+
     myApp.controller('SubController', function ($scope) {
         $scope.$watch('person.name', function(newName) {
             $scope.$emit('onInnerNameChanged', newName);
         });
         $scope.person = { name: 'Inner', outerName: '' };
+
         $scope.$on('onOuterNameChanged', function(e, value) {
             $scope.person.outerName = value;
         });

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>filters</title>
+  <script src="../../../node_modules/angular/angular.min.js"></script>
+</head>
+<body data-ng-controller="FilterController">
+<h1>Fundamentals of AngularJS</h1>
+<h2>Learn About Filters</h2>
+
+<div>Currency: {{currency}} / {{currency | currency}}</div>
+
+<div>Date: {{date}} / {{date | date}}</div>
+
+<div>Filter: <span data-ng-repeat="day in days">{{day}} </span> /
+  <span data-ng-repeat="day in days | filter:'t'">{{day}} </span>
+</div>
+
+<div>JSON: <span>{{json}}</span> / <span>{{json | json}}</span></div>
+
+<div>Limit To:
+  <span data-ng-repeat="day in days">{{day}} </span>
+  /
+  <span data-ng-repeat="day in days | limitTo:3">{{day}} </span>
+</div>
+
+<div>Lowercase: {{days[0]}} / {{days[0] | lowercase}}</div>
+
+<div>Number: {{currency}} / {{currency | number:0}}</div>
+
+<div>Order By:
+  <span data-ng-repeat="day in days">{{day}} </span>
+  /
+  <span data-ng-repeat="day in days | orderBy:'.':reverse">{{day}} </span>
+</div>
+
+<div>Uppercase: {{days[3]}} / {{days[3] | uppercase}}</div>
+
+<div>Date and Uppercase: {{date}} / {{date | date | uppercase}}</div>
+
+<div>Custom Multiply: {{currency}} / {{currency | multiply:3}}</div>
+
+<script type="text/javascript">
+  var myApp = angular.module('myApp', []);
+  myApp.filter('multiply', function() {
+    return function(text, multiplier) {
+      var number = Number(text);
+      if (isNaN(multiplier)) {
+        multiplier = 2;
+      }
+      return number * multiplier;
+    };
+  });
+  myApp.controller('FilterController', function ($scope) {
+    $scope.currency = 1234.43;
+    $scope.date = new Date();
+    $scope.days = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
+    $scope.json = { foo: 'bar' };
+  });
+</script>
+</body>
+</html>
