@@ -1,0 +1,25 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
+<head>
+    <title>Routes - Fundamentals of AngularJS</title>
+
+    <script src="../../../node_modules/angular/angular.min.js"></script>
+    <script src="../../../node_modules/angular-route/angular-route.min.js"></script>
+    <script type="text/javascript" src="Modules.js"></script>
+    <script type="text/javascript" src="Controllers.js"></script>
+    <script type="text/javascript" src="DetailsController.js"></script>
+    <script type="text/javascript" src="ListController.js"></script>
+    <script type="text/javascript" src="RouteController.js"></script>
+    <script type="text/javascript" src="Services.js"></script>
+</head>
+    <body data-ng-controller="RouteController">
+        <h1>{{appName}}</h1>
+        <h2>{{moduleName}}</h2>
+        <h3>Time {{time | date:'HH:mm:ss'}}</h3>
+        <div data-ng-view=""></div>
+        <div>
+            <div>&nbsp;</div>
+            <div><a href="#" data-ng-click="home()">Home</a></div>
+        </div>
+    </body>    
+</html>

@@ -8,9 +8,7 @@
                     url: 'names.txt'
                 })
                 .then(function(result) {
-                    console.log(result.data)
                     deferred.resolve(angular.fromJson(result.data));
-                    console.log(deferred.promise)
                 },function (error) {
                     deferred.reject('Error retrieving names.');
                 });
