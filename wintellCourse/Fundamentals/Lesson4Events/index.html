@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>controllers</title>
+    <script src="../../../node_modules/angular/angular.min.js"></script>
+</head>
+<body data-ng-controller="OuterController">
+<h1>Fundamentals of AngularJS</h1>
+<h2>Learn About Events</h2>
+<label for="name">Enter your name:</label>
+<input type="text" id="name" name="name" data-ng-model="person.name"
+       placeholder="Your name..."/>
+<div>Welcome, {{person.name}}! Your child is {{person.innerName}}</div>
+<div data-ng-controller="SubController">
+    <label for="otherName">Enter your name again:</label>
+    <input type="text" id="otherName" name="otherName"
+           data-ng-model="person.name" placeholder="Your name..."/>
+    <div>Welcome, {{person.name}}! Your parent is {{person.outerName}}</div>
+</div>
+<script type="text/javascript">
+    var myApp = angular.module('myApp', []);
+    myApp.controller('OuterController', function ($scope) {
+        $scope.$watch('person.name', function(newName) {
+            $scope.$broadcast('onOuterNameChanged', newName);
+        });
+        $scope.person = { name: 'Outer', innerName: '' };
+        $scope.$on('onInnerNameChanged', function(e, value) {
+            $scope.person.innerName = value;
+        });
+    });
+    myApp.controller('SubController', function ($scope) {
+        $scope.$watch('person.name', function(newName) {
+            $scope.$emit('onInnerNameChanged', newName);
+        });
+        $scope.person = { name: 'Inner', outerName: '' };
+        $scope.$on('onOuterNameChanged', function(e, value) {
+            $scope.person.outerName = value;
+        });
+    });
+</script>
+</body>
+</html>

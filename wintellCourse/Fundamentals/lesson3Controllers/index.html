@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp">
+<head>
+    <meta charset="UTF-8">
+    <title>controllers</title>
+    <script src="../../../node_modules/angular/angular.min.js"></script>
+</head>
+<body data-ng-controller="OuterController">
+<h1>Fundamentals of AngularJS</h1>
+<h2>Learn About Controllers</h2>
+
+<label for="name">Enter your name:</label>
+
+<input
+        type="text"
+        id="name"
+        name="name"
+        data-ng-model="person.name"
+        placeholder="Your name..."/>
+
+<div>Welcome, {{person.name}}!</div>
+
+<div data-ng-controller="SubController">
+
+    <label for="otherName">Enter your name again:</label>
+
+    <input type="text"
+           id="otherName"
+           name="otherName"
+           data-ng-model="person.name"
+           placeholder="Your name..."/>
+
+    <div>Welcome, {{person.name}}!</div>
+
+    <div id="parentDiv">Your parent is {{$parent.person.name}}</div>
+    <button
+            data-ng-click="clear()">Clear
+    </button>
+    <button data-ng-click="nest()"
+            data-ng-disabled="disabled"
+    >Nest
+    </button>
+</div>
+<div>
+
+    <script>
+        const myApp = angular.module('myApp', []);
+        myApp.controller('OuterController', function ($scope) {
+            $scope.person = {name: 'Outer'};
+        });
+
+        myApp.controller('SubController',['$scope', function ($scope) {
+            $scope.clear =  function () {
+                $scope.person.name = '';
+                $scope.$parent.person.name = '';
+
+            };
+            $scope.nest =  function () {
+                $scope.disabled = true;
+                $scope.person = {name: 'Inner'};
+            };
+        }]);
+    </script>
+</body>
+</html>
