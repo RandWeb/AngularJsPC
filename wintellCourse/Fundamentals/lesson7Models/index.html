@@ -1,0 +1,16 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="myApp">
+<head>
+    <title>Modules - Fundamentals of AngularJS</title>
+    <script src="../../../node_modules/angular/angular.min.js"></script>
+    <script type="text/javascript" src="Controllers.js"></script>
+    <script type="text/javascript" src="Modules.js"></script>
+</head>
+    <body data-ng-controller="ModuleController">
+        <h1>{{appName}}</h1>
+        <h2>{{moduleName}}</h2>
+        <h3>App has been running for {{appRunning | date:'mm:ss'}}</h3>
+        <button data-ng-click="refresh()">Refresh</button>
+        <div><div>&nbsp;</div><div><a href="#" data-ng-click="home()">Home</a></div></div>
+    </body>    
+</html>
