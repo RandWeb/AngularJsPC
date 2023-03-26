@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>chaning filters</title>
+  <script src="../../node_modules/angular/angular.min.js"></script>
+</head>
+
+<body>
+
+<div data-ng-app='myApp' data-ng-controller='MyController'>
+    <div>{{title}}</div>
+    <div>{{title|uppercase|limitTo:limit}}</div>
+    <div>{{uppercaseTitle}}</div>
+</div>
+
+<script>
+    const app = angular.module('myApp', []);
+    app.controller('MyController', function MyController($scope, $filter) {
+        $scope.title = 'Testing the Uppercase Filter';
+        $scope.limit = $scope.title.indexOf(' ');
+        $scope.uppercaseTitle =
+            $filter('limitTo')($filter('uppercase')($scope.title),$scope.limit);
+    });
+</script>
+</body>
+</html>
