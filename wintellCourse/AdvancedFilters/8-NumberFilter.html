@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Number filter</title>
+  <script src="../../node_modules/angular/angular.min.js"></script>
+</head>
+
+<body>
+<div data-ng-app="myApp" data-ng-controller="MyController">
+    <div>{{title}}</div>
+    <div>Iteration {{iteration}} ({{iteration|number}})</div>
+    <div>Hits {{hits}} ({{hits|number}})</div>
+    <div>Estimated Pi: {{pi|number:5}} {{pi|number}} {{pi}}</div>
+
+</div>
+
+<script>
+    const app = angular.module('myApp', []);
+    app.value('maxIterations', 1234);
+
+    app.controller('MyController', function MyController($scope, $timeout, maxIterations) {
+        $scope.title = 'Testing the Number Filter';
+        $scope.iteration = 0;
+        $scope.pi = 0;
+        $scope.hits = 0;
+        (function testPi() {
+            if ($scope.iteration === maxIterations) {
+                return;
+            }
+            $scope.iteration += 1;
+            let x = Math.random();
+            let y = Math.random();
+            if (Math.pow(x, 2.0) + Math.pow(y, 2.0) < 1.0) {
+                $scope.hits += 1;
+            }
+            $scope.pi = 4.0 * $scope.hits / $scope.iteration;
+            $timeout(testPi, 100);
+        })();
+    });
+</script>
+</body>
+</html>
