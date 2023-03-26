@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>$destroy</title>
+  <script src="../../node_modules/angular/angular.min.js"></script>
+</head>
+<body>
+<div data-ng-app="myApp">
+    <div data-ng-controller="OuterController">
+    <button data-ng-click="add()">Add</button>
+    <button data-ng-click="destroy()">Destroy</button>
+    <ul>
+        <li data-ng-repeat="item in list"><span>{{item.value}}</span></li>
+    </ul>
+    <div data-ng-controller="InnerController">Length: {{list.length}}</div>
+</div>
+</div>
+<script>
+    const app = angular.module("myApp", []);
+
+    app.controller("OuterController", function($scope) {
+        $scope.list = [{value: 1},{value: 2},{value: 3},{value: 4},{value: 5}];
+        $scope.add = function() {
+            $scope.list.push({value: $scope.list.length + 1});
+        };
+    });
+
+    app.controller("InnerController", function($scope) {
+        $scope.$parent.destroy = function() {
+            $scope.$destroy();
+        };
+    });
+
+
+</script>
+</body>
+</html>

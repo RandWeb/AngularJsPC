@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Reset scope</title>
+  <script src="../../node_modules/angular/angular.min.js"></script>
+</head>
+<body>
+
+<div data-ng-app="myApp">
+  <div data-ng-controller="OuterController">
+    <input type="text" placeholder="{{placeholder}}"
+           data-ng-model="name"/><br/>
+    <div><br/>You typed: {{name}}</div><br/>
+    <button data-ng-click="reset()">Reset</button>
+  </div>
+</div>
+<script>
+  const app = angular.module("myApp", []);
+
+  app.controller("OuterController", function($scope) {
+    $scope.placeholder = "Enter text";
+    $scope.reset = function() {
+      $scope.name = '';
+    };
+  });
+</script>
+</body>
+</html>
