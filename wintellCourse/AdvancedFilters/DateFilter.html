@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Uppercase</title>
+  <script src="../../node_modules/angular/angular.min.js"></script>
+</head>
+
+<body>
+
+<div data-ng-app='myApp' data-ng-controller='MyController'>
+    <div>{{title}}</div>
+    <div>{{date}}</div>
+    <div>{{date|date}}</div>
+    <div>String date: {{'12/31/1999'|date}}</div>
+    <div>Number date: {{1|date}}</div>
+    <div>Years: {{date|date:'yyyy yy y'}}</div>
+    <div>Months: {{date|date:'MMMM MMM MM M'}}</div>
+    <div>Day: {{date|date:'dd d'}}</div>
+    <div>Week Days: {{date|date:'EEEE EEE'}}</div>
+    <div>Hour: {{date|date:'HH H hh h a'}}</div>
+    <div>Minute: {{date|date:'mm m'}}</div>
+    <div>Second: {{date|date:'ss s'}}</div>
+    <div>Milliseconds: {{date|date:"sss'ms'"}}</div>
+    <div>Timezone Offset: {{date|date:'Z'}}</div>
+    <div>
+        <select
+            ng-model="currentOption"
+            ng-options="option.id as option.format for option in dataOptions">
+
+        </select>
+    </div>
+    <div>{{date|date:dataOptions[currentOption].format}}</div>
+</div>
+
+
+
+<script>
+    var app = angular.module('myApp', []);
+
+    app.controller('MyController', function MyController($scope, $filter) {
+        $scope.title = 'Testing the Date Filter';
+        $scope.date = new Date();
+        $scope.dataOptions = [
+            {id: 0, format: 'medium'},
+            {id: 1, format: 'short'},
+            {id: 2, format: 'fullDate'},
+            {id: 3, format: 'longDate'},
+            {id: 4, format: 'mediumDate'},
+            {id: 5, format: 'shortDate'},
+            {id: 6, format: 'mediumTime'},
+            {id: 7, format: 'shortTime'}];
+        $scope.currentOption = $scope.dataOptions[0].id;
+    });
+</script>
+</body>
+</html>
