@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Order By</title>
+  <script src="../../node_modules/angular/angular.min.js"></script>
+</head>
+
+<body>
+<div data-ng-app="myApp" data-ng-controller="MyController">
+    <div>{{title}}</div>
+    <table>
+        <thead>
+        <tr>
+            <th>
+                <button data-ng-click="sort('name')">
+                    <span data-ng-class="{selected: column==='name'}">Name
+                        <span data-ng-show="column==='name' && reverse.name">-</span>
+                        <span data-ng-show="column==='name' && !reverse.name">+</span>
+                    </span>
+                </button>
+            </th>
+            <th>
+                <button data-ng-click="sort('expertise')">
+                    <span data-ng-class="{selected: column==='expertise'}">
+                        Expertise
+                        <span data-ng-show="column==='expertise' && reverse.expertise">-</span>
+                        <span data-ng-show="column==='expertise' && !reverse.expertise">+</span>
+                    </span>
+                </button>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="instructor in instructors|orderBy:column:reverse[column]">
+            <td>{{instructor.name}}</td>
+            <td>{{instructor.expertise}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <hr/>
+    <table>
+        <thead>
+        <tr>
+            <th>Name</th><th>Expertise</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr data-ng-repeat="instructor in instructors|orderBy:customOrder">
+            <td>{{instructor.name}}</td>
+            <td>{{instructor.expertise}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    const app = angular.module('myApp', []);
+
+    app.controller('MyController', function MyController($scope, $filter) {
+        $scope.title = 'Testing the Order By Filter';
+        $scope.column = 'name';
+        $scope.reverse = {
+            name: false,
+            expertise: false
+        };
+        $scope.sort = function columnSort(column) {
+            if ($scope.column === column) {
+                $scope.reverse[column] = !$scope.reverse[column];
+            } else {
+                $scope.column = column;
+            }
+        };
+        $scope.customOrder = function customOrder(obj) {
+            return obj.expertise.length;
+        };
+        $scope.instructors = [{
+            name: 'Jeffrey Richter',
+            expertise: 'C#'
+        }, {
+            name: 'Jeff Prosise',
+            expertise: 'Windows 8.1'
+        }, {
+            name: 'John Robbins',
+            expertise: 'Bug-slaying'
+        }, {
+            name: 'Jeremy Likness',
+            expertise: 'Angular'
+        }];
+    });
+</script>
+</body>
+</html>
