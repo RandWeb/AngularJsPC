@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>filter</title>
+  <script src="../../node_modules/angular/angular.min.js"></script>
+</head>
+
+<body>
+<div data-ng-app="myApp" data-ng-controller="MyController">
+    <div>{{title}}</div>
+    <hr/>
+    <div>Filter:
+        <input type="text" data-ng-model="searchText" />
+    </div>
+    <table id="results">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Expertise</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="instructor in instructors|filter:searchText">
+            <td>{{instructor.name}}</td>
+            <td>{{instructor.expertise}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <hr/>
+    <div>Any:
+        <input type="text" data-ng-model="searchObj.$" />
+    </div>
+    <div>Name:
+        <input type="text" data-ng-model="searchObj.name" />
+    </div>
+    <div>Expertise:
+        <input type="text" data-ng-model="searchObj.expertise" />
+    </div>
+    <table id="moreResults">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Expertise</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="instructor in instructors|filter:searchObj">
+            <td>{{instructor.name}}</td>
+            <td>{{instructor.expertise}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <hr/>
+    <div>Last Name Starts With:
+        <input type="text" data-ng-model="lastName" />
+    </div>
+    <table id="finalResults">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Expertise</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="instructor in instructors|filter:filterLastName">
+            <td>{{instructor.name}}</td>
+            <td>{{instructor.expertise}}</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script>
+    const app = angular.module('myApp', []);
+
+    app.controller('MyController', function MyController($scope, $filter) {
+        $scope.title = 'Testing the "Filter" Filter';
+        $scope.lastName = '';
+        $scope.instructors = [{
+            name: 'Jeffrey Richter',
+            expertise: 'C#'
+        }, {
+            name: 'Jeff Prosise',
+            expertise: 'Windows 8.1'
+        }, {
+            name: 'John Robbins',
+            expertise: 'Bug-slaying'
+        }, {
+            name: 'Jeremy Likness',
+            expertise: 'Angular'
+        }];
+        $scope.filterLastName =  (instructor) =>{
+            let lastNameFilter = $scope.lastName.toLowerCase();
+            if (lastNameFilter === '') {
+                return true;
+            }
+            let names = instructor.name.toLowerCase().split(' ');
+            return names[1].indexOf(lastNameFilter) === 0;
+        };
+    });
+</script>
+</body>
+</html>
