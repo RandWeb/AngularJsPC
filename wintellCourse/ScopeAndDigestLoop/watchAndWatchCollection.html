@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>watch and watch collection</title>
+  <script src="../../node_modules/angular/angular.min.js"></script>
+</head>
+<body>
+
+<div data-ng-app="myApp">
+    <div data-ng-controller="OuterController">
+        <input type="text" data-ng-model="name" />
+        <br/>
+        <button data-ng-disabled="!canAdd" data-ng-click="add()">Add</button>
+        <br/>
+        <input type="text" placeHolder="filter" data-ng-model="filter"/>
+        <ul>
+            <li data-ng-repeat="person in filteredPeople">{{person.name}}</li>
+        </ul>
+    </div>
+</div>
+<script>
+    const app = angular.module("myApp", []);
+    app.value('maxPeople', 4);
+
+    app.controller("OuterController", function ($scope, maxPeople) {
+        let applyFilter = function (people, filter) {
+            if (filter.length < 3) {
+                return people.slice(0);
+            }
+
+            filteredPeople = [];
+            for (let idx = 0; idx < people.length; idx += 1) {
+                if (people[idx].name.indexOf(filter) >= 0) {
+                    filteredPeople.push(people[idx]);
+                }
+            }
+            return filteredPeople;
+        };
+
+        let id = 1;
+
+        $scope.name = '';
+        $scope.filter = '';
+        $scope.canAdd = false;
+        $scope.people = [];
+        $scope.filteredPeople = [];
+
+        $scope.add = function () {
+            $scope.people.push({
+                id: ++id,
+                name: $scope.name
+            });
+
+            $scope.filteredPeople = applyFilter($scope.people, $scope.filter);
+        };
+
+        $scope.$watch("name", function (name) {
+            $scope.canAdd = name.length > 3 && $scope.people.length < maxPeople;
+        });
+
+        $scope.$watchCollection("people", function (newPeople) {
+            if (newPeople.length === maxPeople) {
+                $scope.canAdd = false;
+            }
+        });
+
+        $scope.$watch(function () {
+            return $scope.filter.length;
+            //return $scope.filter.length > 2;
+        }, function () {
+            $scope.filteredPeople = applyFilter($scope.people, $scope.filter);
+        });
+
+
+    });
+</script>
+</body>
+</html>
