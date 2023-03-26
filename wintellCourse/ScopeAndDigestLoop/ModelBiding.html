@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>why it's important to have 'dot' in your model binding</title>
+    <script src="../../node_modules/angular/angular.min.js"></script>
+</head>
+<body>
+<div data-ng-app='myApp'>
+    <div data-ng-controller="OuterController">
+        <div>Primitive: {{name}}</div>
+        <div>Object: {{person.name}}</div>
+        <div>Overridden Object: {{personOverride.name}}</div>
+        <div data-ng-controller="InnerController">
+            <div>Primitive:
+                <input type="text" data-ng-model="name" />
+            </div>
+            <div>Object:
+                <input type="text" data-ng-model="person.name" />
+            </div>
+            <div>Override:
+                <input type="text" data-ng-model="personOverride.name" />
+            </div>
+            <div>Primitive: {{name}}</div>
+            <div>Object: {{person.name}}</div>
+            <div>Overridden Object: {{personOverride.name}}</div>
+        </div>
+    </div>
+</div>
+
+<script>
+    const app = angular.module('myApp', []);
+    app.controller('OuterController', function ($scope) {
+        $scope.name = 'John Doe';
+        $scope.person = {
+            name: 'John Doe'
+        };
+        $scope.personOverride = {
+            name: 'John Doe'
+        };
+    });
+    app.controller('InnerController', function ($scope) {
+        $scope.personOverride = {
+            name: 'Jane Smith'
+        };
+    });
+</script>
+</body>
+</html>

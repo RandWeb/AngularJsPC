@@ -15,6 +15,7 @@
       <div data-ng-controller="InnerMostController">
         b= 3;
         <span>inner most : a + b = {{a+b}}</span>
+        <span STYLE="display: block" id="innerSpan"></span>
       </div>
     </div>
   </div>
@@ -33,6 +34,12 @@
   app.controller("InnerMostController", function($scope) {
     $scope.b = 3;
   });
+  let oldLoad = window.onload;
+  window.onload = function(){
+    const spanElement = document.getElementById('innerSpan');
+    const scope = angular.element(spanElement).scope();
+    spanElement.innerHTML = scope.$eval('a+b');
+  };
 </script>
 </body>
 </html>

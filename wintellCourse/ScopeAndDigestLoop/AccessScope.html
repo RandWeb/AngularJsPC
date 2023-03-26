@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Access scope</title>
+  <script src="../../node_modules/angular/angular.min.js"></script>
+</head>
+<body>
+<div data-ng-app="myApp">
+  <div data-ng-controller="OuterController">
+    <div>{{value1}}</div>
+    <div>{{value2}}</div>
+    <div>{{value3}}</div>
+  </div>
+</div>
+<script>
+  const app = angular.module("myApp", []);
+
+  app.controller("OuterController", function($scope, $timeout) {
+    $scope.value1 = 'Initial';
+    $scope.value2 = 'Initial';
+    $scope.value3 = 'Initial';
+
+    setTimeout(function() {
+      $scope.value1 = 'Updated';
+    }, 3000);
+
+    setTimeout(function() {
+      $scope.$apply(function() {
+        $scope.value2 = 'Updated';
+      });
+    }, 2000);
+
+    $timeout(function() {
+      $scope.value3 = 'Updated';
+    }, 1000);
+
+    setTimeout(function() {
+      $scope.$digest();
+    }, 5000);
+  });
+
+
+</script>
+</body>
+</html>
