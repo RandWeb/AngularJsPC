@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>On Broadcast Emit</title>
+  <script src="../../node_modules/angular/angular.min.js"></script>
+</head>
+<body>
+<div data-ng-app="myApp">
+  <div data-ng-controller="OuterController">
+    <button data-ng-click="broadcast()">Broadcast</button>
+    <button data-ng-click="emit()">Emit</button>
+    <span>&nbsp;{{message}}</span>
+    <div data-ng-controller="InnerController">
+      <button data-ng-click="broadcast()">Broadcast</button>
+      <button data-ng-click="emit()">Emit</button>
+      <span>&nbsp;{{message}}</span>
+      <div data-ng-controller="InnerMostController">
+        <button data-ng-click="broadcast()">Broadcast</button>
+        <button data-ng-click="emit()">Emit</button><span>&nbsp;{{message}}</span>
+      </div>
+    </div>
+
+  </div>
+</div>
+<script>
+  const app = angular.module("myApp", []);
+
+  app.controller("OuterController", function($scope) {
+    let message = "Outer";
+    $scope.message = message;
+    $scope.$on("message", function(e, message) {
+      $scope.message = message;
+    });
+    $scope.broadcast = function() { $scope.$broadcast("message", message); }
+    $scope.emit = function() { $scope.$emit("message", message); }
+  });
+
+  app.controller("InnerController", function($scope) {
+    let message = "Inner";
+    $scope.message = message;
+    $scope.$on("message", function(e, message) {
+      console.log(e);
+      $scope.message = message;
+    });
+    $scope.broadcast = function() { $scope.$broadcast("message", message); }
+    $scope.emit = function() { $scope.$emit("message", message); }
+  });
+
+  app.controller("InnerMostController", function($scope) {
+    let message = "InnerMost";
+    $scope.message = message;
+    $scope.$on("message", function(e, message) {
+      $scope.message = message;
+    });
+    $scope.broadcast = function() { $scope.$broadcast("message", message); }
+    $scope.emit = function() { $scope.$emit("message", message); }
+  });
+
+</script>
+</body>
+</html>
