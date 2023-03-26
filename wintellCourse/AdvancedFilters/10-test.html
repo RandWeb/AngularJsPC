@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Uppercase</title>
+  <script src="../../node_modules/angular/angular.min.js"></script>
+  <script src="../../node_modules/jasmine-core/lib/jasmine-core.js"></script>
+  <script src="../../node_modules/jasmine/bin/jasmine.js"></script>
+  <script src="../../node_modules/jasmine-browser-runner/index.js"></script>
+</head>
+
+<body>
+<div data-ng-app='myApp'>
+
+</div>
+
+
+<script>
+
+    describe("$scope", function () {
+
+        beforeEach(module('myApp'));
+
+        it("evaluates expressions", inject(function ($rootScope) {
+            var scope = $rootScope.$new();
+            scope.a = 1;
+            scope.b = 2;
+            expect(scope.$eval('a+b')).toBe(3);
+        }));
+    });
+
+    // -- Jasmine Runner
+    (function () {
+        var jasmineEnv = jasmine.getEnv();
+        jasmineEnv.updateInterval = 1000;
+
+        var htmlReporter = new jasmine.HtmlReporter();
+
+        jasmineEnv.addReporter(htmlReporter);
+
+        jasmineEnv.specFilter = function (spec) {
+            return htmlReporter.specFilter(spec);
+        };
+
+        var currentWindowOnload = window.onload;
+
+        window.onload = function () {
+            if (currentWindowOnload) {
+                currentWindowOnload();
+            }
+            execJasmine();
+        };
+
+        function execJasmine() {
+            jasmineEnv.execute();
+        }
+
+    })();
+</script>
+</body>
+</html>
