@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>filter</title>
+    <script src="../../node_modules/angular/angular.min.js"></script>
+</head>
+
+<body>
+<div data-ng-app="myApp" data-ng-controller="MyController">
+    <div>{{title}}</div>
+    <pre>{{jsonText}}</pre>
+</div>
+
+<script>
+    const app = angular.module('myApp', []);
+
+    app.controller('MyController', function MyController($scope, $filter) {
+        $scope.title = 'Testing the JSON Filter';
+        $scope.jsonText = $filter('json')({
+            category: 'Products', products: [
+                {id: 1, name: 'Tablet'},
+                {id: 2, name: 'Laptop', ports: [{type: 'USB 3.0'}]}
+            ]
+        });
+    });
+</script>
+</body>
+</html>
