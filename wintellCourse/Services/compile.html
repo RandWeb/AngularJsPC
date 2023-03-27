@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Angular Services - $compile</title>
+        <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+        <script src="lib/angular.js" type="text/javascript"> </script>
+        <script src="app/main.js" type="text/javascript"> </script>
+        <script src="app/controllers/compileController.js" type="text/javascript"> </script>
+        <script src="app/pages/compile.js" type="text/javascript"> </script>
+    </head>
+    <body data-ng-app="myApp" data-ng-controller="compileCtrl">
+        <div data-ng-include="headerUrl"></div>
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span12">Value: {{value.text}}</div>
+            </div>
+            <div class="row-fluid" data-ng-if="!compiled">
+                <div class="span12">
+                    <button class="btn btn-success" data-ng-click="compile()" data-ng-show="!compiled">Compile</button>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span12"></div>
+            </div>
+            <div class="row-fluid" id="notCompiled" data-ng-non-bindable="">
+                <div class="span12">
+                    <div class="input-append">
+                        <input type="text" class="input-small bottom" data-ng-model="value.input"/>
+                        <button class="btn btn-primary" data-ng-click="update()">Update</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

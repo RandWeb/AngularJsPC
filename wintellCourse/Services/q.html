@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Angular Services</title>
+        <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+        <script src="lib/angular.js" type="text/javascript"> </script>
+        <script src="app/main.js" type="text/javascript"> </script>
+        <script src="app/services/primes.js" type="text/javascript"> </script>
+        <script src="app/controllers/qController.js" type="text/javascript"> </script>
+        <script src="app/pages/q.js" type="text/javascript"> </script>
+    </head>
+    <body data-ng-app="myApp" data-ng-controller="qCtrl">
+        <div data-ng-include="headerUrl"></div>
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span1">
+                    <button class="btn btn-primary" data-ng-disabled="started" data-ng-click="compute()">Compute</button>
+                </div>
+                <div class="span11">
+                    <progress max="{{max}}" value="{{value}}" class="progress progress-success active" style="width: 400px"/>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span1"><label class="label">Primes:</label></div>
+                <div class="span11">{{primes | json}}</div>
+            </div>
+        </div>
+    </body>
+</html>

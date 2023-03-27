@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Angular Services</title>
+        <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+        <script src="lib/angular.js" type="text/javascript"> </script>
+        <script src="app/main.js" type="text/javascript"> </script>
+        <script src="app/controllers/parseController.js" type="text/javascript"> </script>
+    </head>
+    <body data-ng-app="myApp" data-ng-controller="parseCtrl">
+        <div data-ng-include="headerUrl"></div>
+
+        <div class="container-fluid">
+            <div class="row-fluid">
+                <div class="span2 text-right"><label class="label">Model:</label></div>
+                <div class="span10">{{json | json}}</div>
+            </div>
+            <div class="row-fluid">
+                <div class="span2 text-right">
+                    <label class="label" for="expression">Expression:</label>
+                </div>
+                <div class="span10">
+                    <div class="input-append">
+                        <input type="text" class="input-xlarge" data-ng-model="expression" id="expression"/>
+                        <button data-ng-click="parse()" class="btn btn-primary">Parse</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row-fluid">
+                <div class="span2 text-right"><label class="label">Result:</label></div>
+                <div class="span10">{{result}}</div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Angular Services</title>
+        <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+        <script src="lib/angular.js" type="text/javascript"> </script>
+        <script src="app/main.js" type="text/javascript"> </script>
+        <script src="app/controllers/intervalController.js" type="text/javascript"> </script>
+        <script src="app/pages/interval.js" type="text/javascript"> </script>
+    </head>
+    <body data-ng-app="myApp" data-ng-controller="intervalCtrl">
+        <div data-ng-include="headerUrl"></div>
+
+        <div class="container-fluid">
+            <div class="row-fluid" data-ng-show="!!promise">
+                <button class="btn btn-warning" data-ng-click="cancel()">Cancel</button>
+            </div>
+            <div class="row-fluid" data-ng-repeat="line in lines">
+                <span data-ng-repeat="char in line | orderBy">{{char.val}}</span>
+            </div>
+        </div>
+    </body>
+</html>

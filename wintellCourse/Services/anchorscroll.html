@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Angular Services - $anchorScroll</title>
+        <link rel="stylesheet" type="text/css" href="./css/bootstrap.css">
+        <script src="lib/angular.js" type="text/javascript"> </script>
+        <script src="app/main.js" type="text/javascript"> </script>
+        <script src="app/controllers/anchorScrollController.js" type="text/javascript"> </script>
+        <script src="app/pages/anchorScroll.js" type="text/javascript"> </script>
+    </head>
+    <body data-ng-app="myApp" data-ng-controller="anchorScrollCtrl">
+        <div data-ng-include="headerUrl"></div>
+        <a id="top"></a>
+        <input class="input-small" type="text" data-ng-model="set"/>
+        <button class="btn btn-primary" data-ng-click="goTo()">Scroll</button>
+        <input class="checkbox" type="checkbox" data-ng-model="doScroll"/>&nbsp;Enable scrolling
+        <ul>
+            <li data-ng-repeat="number in list"><a id="{{number}}">{{number}}</a>&nbsp;<a href="" data-ng-click="top()">Top</a>
+            </li>
+        </ul>
+    </body>
+</html>
