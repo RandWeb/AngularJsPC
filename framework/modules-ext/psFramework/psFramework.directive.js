@@ -3,7 +3,7 @@
 angular.module("psFramework").directive("psFramework", function () {
     return {
         restrict: 'E',
-        transclude: false,
+        transclude: true,
         scope: {
             title: '@',
             subtitle: '@',

@@ -11,18 +11,26 @@
     <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
 
     <link rel="stylesheet" href="app/app.css">
-    <link href="modules-ext/psFramework/psFramework.css" rel="stylesheet"/>
 
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
     <script src="../node_modules/angular/angular.min.js"></script>
 
-    <script src="modules-ext/psDashboard/psDashboard.module.js"></script>
-
-    <script src="modules-ext/psMenu/psMenu.module.js"></script>
-
+    <link href="modules-ext/psFramework/psFramework.css" rel="stylesheet"/>
     <script src="modules-ext/psFramework/psFramework.module.js"></script>
     <script src="modules-ext/psFramework/psFramework.Controller.js"></script>
     <script src="modules-ext/psFramework/psFramework.directive.js"></script>
+
+    <script src="modules-ext/psDashboard/psDashboard.module.js"></script>
+
+    <link rel="stylesheet" href="modules-ext/psMenu/psMenu.css">
+    <script src="modules-ext/psMenu/psMenu.module.js"></script>
+    <script src="modules-ext/psMenu/psMenu.controller.js"></script>
+    <script src="modules-ext/psMenu/psMenu.directive.js"></script>
+
+    <link rel="stylesheet" href="modules-ext/psMenu/psMenuItem/psMenuItem.css">
+    <script src="modules-ext/psMenu/psMenuItem/psMenuItem.directive.js"></script>
+
+
 
     <script src="app/app.module.js"></script>
     <script src="app/app.config.js"></script>
@@ -34,7 +42,11 @@
         subtitle="Administrative Application"
         icon-file="https://avatars.githubusercontent.com/u/77356231?s=400&u=bde38b5808e0396873097717a282c26afc24932d&v=4"
 >
-
+    <ps-menu>
+            <ps-menu-item label="Dashboard"></ps-menu-item>
+            <ps-menu-item label="Locations"></ps-menu-item>
+            <ps-menu-item label="Raft Guides"></ps-menu-item>
+    </ps-menu>
 </ps-framework>
 </body>
 </html>
