@@ -7,11 +7,11 @@ contacts.config([
     '$routeProvider',  ($routeProvider) =>{
         $routeProvider.
         when('/list', {
-            templateUrl: 'partials/list.html',
+            templateUrl: '../partials/list.html',
             controller: 'ListController'
         }).
         when('/details/:itemId',{
-            templateUrl:'partials/details.html',
+            templateUrl:'../partials/details.html',
             controller:'DetailsController'
         }).
         otherwise({

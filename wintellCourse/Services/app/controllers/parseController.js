@@ -15,6 +15,8 @@
         $scope.result = "";
         $scope.parse = function () {
             var fn = $parse($scope.expression);
+            console.log("fn => " , fn);
+            console.log(fn($scope.json));
             $scope.result = fn($scope.json);
         };
     }
