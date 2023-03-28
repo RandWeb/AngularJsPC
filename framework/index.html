@@ -2,19 +2,39 @@
 <html lang="en" data-ng-app="app">
 <head>
     <meta charset="UTF-8">
-    <title>framwwork</title>
+    <title>framework</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&display=swap"
+          rel="stylesheet">
     <link rel="stylesheet" href="../node_modules/bootstrap/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="../node_modules/font-awesome/css/font-awesome.min.css">
 
+    <link rel="stylesheet" href="app/app.css">
+    <link href="modules-ext/psFramework/psFramework.css" rel="stylesheet"/>
+
     <script src="../node_modules/jquery/dist/jquery.min.js"></script>
-    <script src="node_modules/angular/angular.min.js"></script>
+    <script src="../node_modules/angular/angular.min.js"></script>
+
     <script src="modules-ext/psDashboard/psDashboard.module.js"></script>
+
     <script src="modules-ext/psMenu/psMenu.module.js"></script>
+
     <script src="modules-ext/psFramework/psFramework.module.js"></script>
+    <script src="modules-ext/psFramework/psFramework.Controller.js"></script>
+    <script src="modules-ext/psFramework/psFramework.directive.js"></script>
+
     <script src="app/app.module.js"></script>
+    <script src="app/app.config.js"></script>
 
 </head>
 <body class="container-fluid">
-<ps-framework></ps-framework>
+<ps-framework
+        title="Whitewater Adventures"
+        subtitle="Administrative Application"
+        icon-file="https://avatars.githubusercontent.com/u/77356231?s=400&u=bde38b5808e0396873097717a282c26afc24932d&v=4"
+>
+
+</ps-framework>
 </body>
 </html>
