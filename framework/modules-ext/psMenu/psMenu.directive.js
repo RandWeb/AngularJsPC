@@ -2,11 +2,11 @@
 
 angular.module("psMenu").directive("psMenu",function (){
     return {
-        transclude: true,
-        restrict:'E',
         scope:{
 
         },
+        transclude: true,
+        controller:'psMenuController',
         templateUrl:"modules-ext/psMenu/psMenuTemplate.html",
         link:function (scope, el, attr){
 
