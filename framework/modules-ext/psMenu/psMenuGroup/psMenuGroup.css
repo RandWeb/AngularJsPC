@@ -1,0 +1,11 @@
+
+.ps-group-indicator-left{
+    float: right;
+    color: #ddd;
+    margin-right: 2px;
+    margin-top: 15px;
+}
+.ps-group-indicator-left-horizontal{
+    margin-right: -5px;
+    margin-top: 4px;
+}

@@ -32,3 +32,11 @@
     -ms-user-select: none;
     user-select: none;
 }
+
+.ps-item-horizontal {
+    display: inline-block;
+    width: 165px !important;
+    margin-left: 20px;
+    margin-top: 10px;
+    line-height: 1.5em !important;
+}
